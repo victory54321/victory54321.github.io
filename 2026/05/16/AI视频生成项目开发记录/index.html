@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI视频生成工具 | 项目开发进度记录 | Yuu</title><meta name="author" content="Yuu"><meta name="copyright" content="Yuu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="项目简介本项目是一款基于AI接口实现的全自动视频生成工具，依托大模型图文理解、文生视频能力，实现图片素材一键生成完整短视频，目前处于开发完善阶段，基础核心功能已全部调试完成。 项目定位偏向轻量化桌面应用，面向日常短视频快速制作、素材成片、图文转视频等简易使用场景，整体分为前端交互界面 + 后端逻辑调用 + AI接口对接三部分开发。 所用技术栈 前端界面：Python Tkinter 可视化桌面UI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI视频生成工具 | 项目开发进度记录">
+<meta property="og:url" content="https://victory54321.github.io/2026/05/16/AI%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Yuu">
+<meta property="og:description" content="项目简介本项目是一款基于AI接口实现的全自动视频生成工具，依托大模型图文理解、文生视频能力，实现图片素材一键生成完整短视频，目前处于开发完善阶段，基础核心功能已全部调试完成。 项目定位偏向轻量化桌面应用，面向日常短视频快速制作、素材成片、图文转视频等简易使用场景，整体分为前端交互界面 + 后端逻辑调用 + AI接口对接三部分开发。 所用技术栈 前端界面：Python Tkinter 可视化桌面UI">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://victory54321.github.io/img/ai-video-cover.jpg">
+<meta property="article:published_time" content="2026-05-16T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-16T11:46:02.643Z">
+<meta property="article:author" content="Yuu">
+<meta property="article:tag" content="项目开发">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="AI视频">
+<meta property="article:tag" content="前端开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://victory54321.github.io/img/ai-video-cover.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI视频生成工具 | 项目开发进度记录",
+  "url": "https://victory54321.github.io/2026/05/16/AI%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/",
+  "image": "https://victory54321.github.io/img/ai-video-cover.jpg",
+  "datePublished": "2026-05-16T12:00:00.000Z",
+  "dateModified": "2026-05-16T11:46:02.643Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yuu",
+      "url": "https://victory54321.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://victory54321.github.io/2026/05/16/AI%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.3.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI视频生成工具 | 项目开发进度记录',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yuu</span></a><a class="nav-page-title" href="/"><span class="site-name">AI视频生成工具 | 项目开发进度记录</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">AI视频生成工具 | 项目开发进度记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-16T12:00:00.000Z" title="发表于 2026-05-16 20:00:00">2026-05-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-16T11:46:02.643Z" title="更新于 2026-05-16 19:46:02">2026-05-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>本项目是一款<strong>基于AI接口实现的全自动视频生成工具</strong>，依托大模型图文理解、文生视频能力，实现图片素材一键生成完整短视频，目前处于开发完善阶段，基础核心功能已全部调试完成。</p>
+<p>项目定位偏向轻量化桌面应用，面向日常短视频快速制作、素材成片、图文转视频等简易使用场景，整体分为<strong>前端交互界面 + 后端逻辑调用 + AI接口对接</strong>三部分开发。</p>
+<h2 id="所用技术栈"><a href="#所用技术栈" class="headerlink" title="所用技术栈"></a>所用技术栈</h2><ul>
+<li>前端界面：Python Tkinter 可视化桌面UI</li>
+<li>后端逻辑：Python 原生脚本开发</li>
+<li>AI能力：阿里云万象文生视频、图文理解API</li>
+<li>功能模块：素材上传、参数配置、任务提交、进度监听、视频导出</li>
+<li>运行环境：Windows 全平台适配</li>
+</ul>
+<h2 id="目前已完成开发内容"><a href="#目前已完成开发内容" class="headerlink" title="目前已完成开发内容"></a>目前已完成开发内容</h2><ol>
+<li><p><strong>完整可视化操作界面</strong><br>搭建完成简洁清晰的桌面客户端界面，包含图片上传区、风格选择区、视频参数设置、生成进度显示、结果预览等全部布局模块，界面布局合理，操作逻辑直观。</p>
+</li>
+<li><p><strong>素材上传与本地读取功能</strong><br>支持本地多张图片批量导入、预览、删除素材，自动识别图片格式与分辨率，完成本地文件预处理。</p>
+</li>
+<li><p><strong>AI接口对接封装</strong><br>完成阿里云AI视频生成官方接口封装，实现密钥校验、请求头配置、请求参数规范化拼接，可正常连通官方服务端。</p>
+</li>
+<li><p><strong>视频风格与参数自定义</strong><br>已接入多种视频生成风格模板，支持自定义视频时长、画面比例、清晰度、动态效果强度等核心生成参数。</p>
+</li>
+<li><p><strong>生成任务异步监听</strong><br>实现后台静默提交生成任务，前端实时刷新生成进度，无需阻塞界面操作，任务状态实时展示。</p>
+</li>
+<li><p><strong>成品视频自动保存</strong><br>AI生成完成后，自动拉取视频资源，本地自动分类保存，支持一键打开输出文件夹。</p>
+</li>
+</ol>
+<h2 id="项目实现整体流程"><a href="#项目实现整体流程" class="headerlink" title="项目实现整体流程"></a>项目实现整体流程</h2><ol>
+<li>用户打开客户端，填写平台密钥完成接口授权</li>
+<li>批量上传需要制作视频的图片素材</li>
+<li>选择视频风格、设置时长、分辨率等参数</li>
+<li>点击开始生成，程序自动整理请求数据提交AI服务</li>
+<li>后台排队生成，前端实时显示进度</li>
+<li>生成成功自动下载视频至本地，支持预览使用</li>
+</ol>
+<h2 id="现阶段项目成果展示"><a href="#现阶段项目成果展示" class="headerlink" title="现阶段项目成果展示"></a>现阶段项目成果展示</h2><h3 id="一、原始输入素材图片"><a href="#一、原始输入素材图片" class="headerlink" title="一、原始输入素材图片"></a>一、原始输入素材图片</h3><p>本次用于AI生成的原始实拍原图，也是整个视频制作的基础素材：<br><img src="/img/%E4%BA%A7%E5%93%81%E5%8E%9F%E5%9B%BE.jpg" alt="原始输入素材图"></p>
+<h3 id="二、AI生成海报成品展示"><a href="#二、AI生成海报成品展示" class="headerlink" title="二、AI生成海报成品展示"></a>二、AI生成海报成品展示</h3><p>项目同步支持一键生成高清宣传海报，风格统一美观，可直接用于宣传使用：<br><img src="/img/%E4%BA%A7%E5%93%81%E5%AE%A3%E4%BC%A0%E6%B5%B7%E6%8A%A5%E5%9B%BE.png" alt="AI生成海报1"></p>
+<h3 id="三、AI生成成品视频演示"><a href="#三、AI生成成品视频演示" class="headerlink" title="三、AI生成成品视频演示"></a>三、AI生成成品视频演示</h3><p>以下为通过本项目成功生成的实拍效果视频，已上传至火山引擎对象存储，可直接在线播放观看：</p>
+<p><strong>演示视频一</strong><br><video controls width="100%" style="border-radius: 8px; margin: 10px 0;"><br>  <source src="https://yqqnb.tos-cn-beijing.volces.com/%E4%BA%A7%E5%93%81%E8%A7%86%E9%A2%911.mp4" type="video/mp4"><br>  你的浏览器不支持视频播放，请更换浏览器查看<br></video></p>
+<p><strong>演示视频二</strong><br><video controls width="100%" style="border-radius: 8px; margin: 10px 0;"><br>  <source src="https://yqqnb.tos-cn-beijing.volces.com/%E4%BA%A7%E5%93%81%E8%A7%86%E9%A2%912.mp4" type="video/mp4"><br>  你的浏览器不支持视频播放，请更换浏览器查看<br></video></p>
+<h2 id="暂未完成-后续开发计划"><a href="#暂未完成-后续开发计划" class="headerlink" title="暂未完成 &#x2F; 后续开发计划"></a>暂未完成 &#x2F; 后续开发计划</h2><ol>
+<li>可以考虑使用更好的视频生成模型，例如Seedance2.0</li>
+<li>优化界面UI美化，完善细节交互体验</li>
+<li>完善异常报错提示、网络超时重连机制</li>
+<li>打包成独立exe可执行文件，免环境直接运行</li>
+<li>优化请求速度，精简代码体积，降低设备占用</li>
+</ol>
+<h2 id="项目总结"><a href="#项目总结" class="headerlink" title="项目总结"></a>项目总结</h2><p>目前该AI视频生成项目<strong>核心生成逻辑与接口调用全部打通</strong>，基础使用流程可以完整跑通，能够正常实现图片素材转AI动态短视频、AI海报生成等核心需求。<br>后续仅需优化交互细节、补齐附属功能、完成程序打包即可正式定稿使用。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://victory54321.github.io">Yuu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://victory54321.github.io/2026/05/16/AI%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">https://victory54321.github.io/2026/05/16/AI%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://victory54321.github.io" target="_blank">Yuu</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">项目开发</a><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/AI%E8%A7%86%E9%A2%91/">AI视频</a><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></div><div class="post-share"><div class="addtoany"><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class="a2a_button_wechat"></a><a class="a2a_button_qzone"></a><a class="a2a_button_facebook"></a><a class="a2a_button_twitter"></a><a class="a2a_button_copy_link"></a><a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a></div></div><script async="async" src="https://static.addtoany.com/menu/page.js"></script></div></div><nav class="pagination-post" id="pagination"></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yuu</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/victory54321"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/victory54321" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">分享经验，记录日常.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">项目简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%80%E7%94%A8%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="toc-number">2.</span> <span class="toc-text">所用技术栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%89%8D%E5%B7%B2%E5%AE%8C%E6%88%90%E5%BC%80%E5%8F%91%E5%86%85%E5%AE%B9"><span class="toc-number">3.</span> <span class="toc-text">目前已完成开发内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">项目实现整体流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E9%98%B6%E6%AE%B5%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">5.</span> <span class="toc-text">现阶段项目成果展示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E5%A7%8B%E8%BE%93%E5%85%A5%E7%B4%A0%E6%9D%90%E5%9B%BE%E7%89%87"><span class="toc-number">5.1.</span> <span class="toc-text">一、原始输入素材图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81AI%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">5.2.</span> <span class="toc-text">二、AI生成海报成品展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81AI%E7%94%9F%E6%88%90%E6%88%90%E5%93%81%E8%A7%86%E9%A2%91%E6%BC%94%E7%A4%BA"><span class="toc-number">5.3.</span> <span class="toc-text">三、AI生成成品视频演示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9A%82%E6%9C%AA%E5%AE%8C%E6%88%90-%E5%90%8E%E7%BB%AD%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92"><span class="toc-number">6.</span> <span class="toc-text">暂未完成 &#x2F; 后续开发计划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">项目总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/05/16/AI%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/" title="AI视频生成工具 | 项目开发进度记录"><img src="/img/ai-video-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI视频生成工具 | 项目开发进度记录"/></a><div class="content"><a class="title" href="/2026/05/16/AI%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/" title="AI视频生成工具 | 项目开发进度记录">AI视频生成工具 | 项目开发进度记录</a><time datetime="2026-05-16T12:00:00.000Z" title="发表于 2026-05-16 20:00:00">2026-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/16/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%AD%A3%E5%BC%8F%E5%8D%9A%E5%AE%A2/" title="我的第一篇正式博客"><img src="/img/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="我的第一篇正式博客"/></a><div class="content"><a class="title" href="/2026/05/16/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%AD%A3%E5%BC%8F%E5%8D%9A%E5%AE%A2/" title="我的第一篇正式博客">我的第一篇正式博客</a><time datetime="2026-05-16T10:00:00.000Z" title="发表于 2026-05-16 18:00:00">2026-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/16/Test-Blog/" title="Test-Blog"><img src="/img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Test-Blog"/></a><div class="content"><a class="title" href="/2026/05/16/Test-Blog/" title="Test-Blog">Test-Blog</a><time datetime="2026-05-16T05:03:10.999Z" title="发表于 2026-05-16 13:03:10">2026-05-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/background.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2026 By Yuu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hosted on GitHub Pages</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.3.0"></script><script src="/js/main.js?v=5.3.0"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'victory54321/victory54321.github.io',
+      'data-repo-id': 'R_kgDOSe9hhw',
+      'data-category-id': 'DIC_kwDOSe9hh84C9KpS',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章..." type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.3.0"></script></div></div></body></html>
